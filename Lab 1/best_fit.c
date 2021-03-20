@@ -23,20 +23,23 @@ int main()
 
 int findMin(int processSize)
 {
-    int allocator = -1;
+    int allocator = -1, min = 9999, blockSizeLength = 5;
     // int blockSizeLength = (int) sizeof(blockSize) / sizeof(blockSize[0]);
-    int blockSizeLength = 5;
 
     for (int i = 0; i < blockSizeLength; i++)
     {
         if (processSize < blockSize[i])
         {
-            blockSize[i] -= processSize;
-            allocator = i;
+            if (min > blockSize[i])
+            {
+                min = blockSize[i];
+                allocator = i;
+            }
         }
     }
 
-    return allocator;
+    blockSize[allocator] -= processSize;
+    return allocator + 1;
 }
 
 void bestFit()
@@ -48,7 +51,6 @@ void bestFit()
     for (int i = 0; i < processSizeLength; i++)
     {
         int blockNumber = findMin(processSize[i]);
-        printf("%d\t\t\t%d\t\t\t%d\n", i + 1, processSize[i], blockNumber);
-        // kena cek balik blockNumber !!!
+        printf("%d\t\t\t%d\t\t\t\t%d\n", i + 1, processSize[i], blockNumber);
     }
 }

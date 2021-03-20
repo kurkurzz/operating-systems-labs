@@ -46,11 +46,11 @@ void firstFit()
         int blockNumber = findFirstFit(processSize[i]);
         if (blockNumber != -1)
         {
-            printf("%d\t\t\t%d\t\t\t%d\n", i + 1, processSize[i], blockNumber + 1);
+            printf("%d\t\t\t%d\t\t\t\t%d\n", i + 1, processSize[i], blockNumber + 1);
         }
         else
         {
-            printf("%d\t\t\t%d\t\t\t%s\n", i + 1, processSize[i], "Not Allocated");
+            printf("%d\t\t\t%d\t\t\t\t%s\n", i + 1, processSize[i], "Not Allocated");
         }
     }
 }
