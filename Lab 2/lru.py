@@ -31,19 +31,17 @@ def page_faults(pages, frame_capacity):
    indexes = []
    least_recent_index = 0
    for i in range(len(pages)):
-      if len(frame) != frame_capacity:
+      if pages[i] in frame:
+         indexes[frame.index(pages[i])] = i
+         least_recent_index = min(indexes)   
+      elif len(frame) != frame_capacity:
          frame.append(pages[i])
          page_fault += 1
          indexes.append(i)
       else:
-         if pages[i] in frame:
-            # update index
-            indexes[frame.index(pages[i])] = i
-         else:
-            frame[indexes.index(least_recent_index)] = pages[i]
-            indexes[indexes.index(least_recent_index)] = i
-            page_fault += 1
-
+         frame[indexes.index(least_recent_index)] = pages[i]
+         indexes[indexes.index(least_recent_index)] = i
+         page_fault += 1
          least_recent_index = min(indexes)   
             
    return page_fault
