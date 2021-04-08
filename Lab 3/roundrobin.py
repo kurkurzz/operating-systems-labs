@@ -48,11 +48,11 @@ def round_robin():
             array[5][index] = t - array[2][index] # Turnaround time
             array[4][index] = array[5][index] - array[1][index] # Waiting time
 
-job_number = int(input("Enter number of jobs: "))
+job_number = 5
 array = [[0 for j in range(job_number)] for i in range(6)] # Initialize 2D Array
 array[0] = [number for number in range(1, job_number+1)]
-array[1] = [int(time) for time in input("Enter burst time: ").split()]
-array[2] = [int(time) for time in input("Enter arrival time: ").split()]
+array[1] = [8, 2, 7, 3, 5]
+array[2] = [0, 5, 1, 6, 8]
 print_time()
 
 round_robin()

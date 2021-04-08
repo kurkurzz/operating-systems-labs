@@ -25,11 +25,19 @@ def sort_arrival_time():
             if (a == b): continue
             if (array[2][a] < array[2][b]):
                 change_arrangement(a, b)
-                
+
+def print_time():
+    print ("Job Number      Burst Time      Arrival Time    Waiting Time    Turaround Time  ")
+    for a in range(job_number):
+        for b in range(0, 6):
+            if (b == 3): continue
+            print(array[b][a], end = "\t\t")
+        print()
+
 '''
 # Pseudocode for determining arrival time
-assign new variable for temp_job 
-calculate completion time, waiting time, turnaround time for first job 
+assign new variable for temp_job
+calculate completion time, waiting time, turnaround time for first job
 iterate every job after the first one (i = 1)
 
     determine shortest burst time
@@ -37,14 +45,14 @@ iterate every job after the first one (i = 1)
         assign another temp varialbe to store burst time of current i-th job
         iterate every i-th loop with j
             if first temp variable is more than completion time of j AND
-            if second temp shortest burst time 
+            if second temp shortest burst time
                 assign new second temp
                 assign new temp_job
 
     calculate completion waiting time, turnaround time for i-th temp_job (same as first part)
 
-    swap temp_job with the shortest burst time with i-th job 
-'''
+    swap temp_job with the shortest burst time with i-th job
+'''                
 def completion_time():
     temp_job = -1
     array[3][0] = array[2][0] + array[1][0]
@@ -65,23 +73,15 @@ def completion_time():
         array[4][temp_job] = array[5][temp_job] - array[1][temp_job]
         change_arrangement(temp_job, i)
 
-def print_time():
-    print ("Job Number      Burst Time      Arrival Time    Waiting Time    Turaround Time  ")
-    for a in range(job_number):
-        for b in range(0, 6):
-            if (b == 3): continue
-            print(array[b][a], end = "\t\t")
-        print()
-
 def shortest_job_first():
     sort_arrival_time()
     completion_time()
 
-job_number = int(input("Enter number of jobs: "))
+job_number = 4
 array = [[0 for j in range(job_number)] for i in range(6)] # Initialize 2D Array
 array[0] = [number for number in range(1, job_number+1)]
-array[1] = [int(time) for time in input("Enter burst time: ").split()]
-array[2] = [int(time) for time in input("Enter arrival time: ").split()]
+array[1] = [3, 4, 2, 4]
+array[2] = [2, 0, 4 ,5]
 print_time()
 
 shortest_job_first()
