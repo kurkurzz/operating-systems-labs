@@ -12,13 +12,8 @@ def calculate_need():
         for b in range(resource_total):
             resource_need[a][b] = process_maximum[a][b] - process_allocation[a][b]
 
-def list_difference(array1, array2):
-    difference = [x1 - x2 for (x1, x2) in zip(array1, array2)]
-    negative_values = [i for i in difference if i < 0]
-    if len(negative_values) > 0:
-        return False
-    else:
-        return True
+def list_difference(list1, list2):
+    return len(list(a for a in list(x - y for (x, y) in zip(list1, list2)) if a < 0)) == 0
 
 def print_table():
     print("Processes     Allocation          Max           Available           Need")
