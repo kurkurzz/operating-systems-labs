@@ -34,15 +34,16 @@ def is_safe():
                 process_done_queue.append(process_name[i])
 
 process_allocation = [[0, 0, 1 ,2], [1, 0, 0, 0], [1, 3, 5, 4], [0, 6, 3, 2], [0, 0, 1, 4]]
+process_total = len(process_allocation)
 process_name = [i for i in range(1, process_total+1)]
 process_maximum = [[0, 0, 1 ,2], [1, 7, 5, 0], [2, 3, 5, 6], [0, 6, 5, 2], [0, 6, 5, 6]]
 process_done_queue = []
-process_total = len(process_allocation)
 
+resource_total = len(process_allocation[0])
 resource_available = [[0 for j in range(resource_total)] for i in range(process_total+1)] # +1 to store the last process_available 
 resource_available[0] = [1, 5, 2, 0]
 resource_need = []
-resource_total = len(process_allocation[0])
+
 
 flag = [1 for n in range(process_total)] # flag as 0 or 1 
 
