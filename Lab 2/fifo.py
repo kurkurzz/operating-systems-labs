@@ -24,23 +24,23 @@ from queue import Queue
 2. Return page faults.
 '''
 def page_faults(pages, frame_capacity):
-   frame = []
-   q = Queue(frame_capacity)
-   page_fault = 0
+	frame = []
+	q = Queue(frame_capacity)
+	page_fault = 0
 
-   # traverse each pages
-   for i in range(len(pages)):
-      if pages[i] not in frame:
-         page_fault += 1
-         if len(frame) != frame_capacity: 
-            frame.append(pages[i])
-            q.put(pages[i])
-         else:
-            frame.remove(q.get())
-            frame.append(pages[i])
-            q.put(pages[i])
-         
-   return page_fault
+	# traverse each pages
+	for i in range(len(pages)):
+		if pages[i] not in frame:
+			page_fault += 1
+			if len(frame) != frame_capacity: 
+				frame.append(pages[i])
+				q.put(pages[i])
+			else:
+				frame[frame.index(q.get())] = pages[i]
+				q.put(pages[i])
+			print(frame)
+			
+	return page_fault
 
 pages = [0,2,1,6,4,0,1,0,3,1,2,1]
 print("Page Fault(s): ", page_faults(pages, 3))
