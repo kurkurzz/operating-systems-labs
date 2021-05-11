@@ -24,7 +24,7 @@ def prompt_continue():
         print_files()
     else:
         print("Please enter the right key")
-        to_continue()
+        prompt_continue()
 
 def sequential_allocation():
     while True:
